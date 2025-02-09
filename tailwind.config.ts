@@ -3,12 +3,14 @@ import colors from "tailwindcss/colors";
 import formsPlugin from "@tailwindcss/forms";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
 
     // Path to Tremor module
     "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
   ],
+  
   theme: {
     transparent: "transparent",
     current: "currentColor",

@@ -200,7 +200,7 @@ const Toast = React.forwardRef<
           )}
         </div>
       </ToastPrimitives.Root>
-    );
+    )
   }
 );
 Toast.displayName = "Toast";

@@ -222,7 +222,7 @@ const PromptCard = ({
 const AIWarningCallout = () => (
   <Callout title="Perhatian" color="yellow" icon={AlertTriangle}>
     AI bisa membuat kesalahan. Gunakan sisi manusiamu. Tidak ada data yang
-    disimpan dalam situs ini.
+    disimpan dalam situs ini. Situs ini masih belum sempurna, semoga bisa membantu.
   </Callout>
 );
 
@@ -307,7 +307,7 @@ Help me improve these items based on my product details and the problem formula 
 
   return (
     // Seluruh aplikasi dibungkus dengan Card menggunakan style default Tremor dan elevasi bayangan
-    <Card className="max-w-4xl mx-auto p-4 bg-tremor-background text-tremor-content min-h-screen shadow-xl">
+    <Card className=" mt-4 max-w-4xl mx-auto p-4 bg-tremor-background text-tremor-content min-h-screen shadow-xl">
       {/* Input Produk */}
 
       <div className="mb-8 space-y-4 ">
