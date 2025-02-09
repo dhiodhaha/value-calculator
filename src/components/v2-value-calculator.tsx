@@ -16,6 +16,8 @@ import {
   Callout,
 } from "@tremor/react";
 import { Copy, AlertTriangle } from "lucide-react";
+import { useToast } from "@/hooks/useToast";
+import { Toaster } from "./ui/toaster";
 
 // Tombol untuk memilih nilai (untuk layar besar)
 const ValueButton = ({
@@ -66,13 +68,31 @@ const PromptCard = ({
   isHigherScore: boolean;
 }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
+  const { toast } = useToast();
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(prompt);
+    navigator.clipboard
+      .writeText(prompt)
+      .then(() => {
+        toast({
+          title: "Berhasil",
+          description: "Teks prompt berhasil disalin ke clipboard.",
+          variant: "success",
+          duration: 3000,
+        });
+      })
+      .catch(() => {
+        toast({
+          title: "Gagal",
+          description: "Terjadi kesalahan saat menyalin teks.",
+          variant: "warning",
+        });
+      });
   };
 
   return (
-    <Card className="mt-4">
+    <Card className="">
+      <Toaster />
       <div className="p-4">
         <Button
           className="w-full"
@@ -85,10 +105,11 @@ const PromptCard = ({
           <>
             <div className="mt-4 text-sm">
               <p>
-                Maaf saya sisipin iklan, kenalin aku Dhafin. Dengan latar
-                belakang komunikasi, saya telah dipercaya selama lebih dari 5
-                tahun mengelola media sosial untuk brand, NGO, dan pemerintah,
-                dengan fokus pada pembuatan strategi konten.
+                Maaf saya sisipin iklan dulu promptnya ada di bawah, kenalin aku
+                Dhafin. Dengan latar belakang komunikasi, saya telah dipercaya
+                selama lebih dari 5 tahun mengelola media sosial untuk brand,
+                NGO, dan pemerintah, dengan fokus pada pembuatan strategi
+                konten.
               </p>
               <p className="mt-2">
                 Saat ini, saya sedang menulis buku tentang cara mengelola media
@@ -96,7 +117,7 @@ const PromptCard = ({
                 membantu kamu lebih dikenal dan memperbesar peluang dikenal
                 konsumen ataupun diterima kerja.
               </p>
-              <p className="mt-2">
+              <div className="mt-2">
                 Jika tertarik, silakan pre-order melalui tautan:{" "}
                 <a
                   href="https://goakal.com/dhafin/valuecalculator"
@@ -105,25 +126,90 @@ const PromptCard = ({
                   https://goakal.com/dhafin/valuecalculator
                 </a>{" "}
                 (Pre order TERBATAS 10 untuk orang saja)
-              </p>
+                <p className="mt-2 font-bold">
+                  📖 Apa yang akan dibahas dalam buku ini?
+                </p>
+                <p className="mt-2 font-bold">Dasar-Dasar Online Presence</p>
+                <ul className="list-inside list-none">
+                  <li>
+                    ✅ Mindset Online Presence untuk Meningkatkan Peluang Kerja
+                  </li>
+                  <li>✅ Strategi Membangun Personal Brand dan Bisnis</li>
+                  <li>
+                    ✅ Optimalisasi di Berbagai Platform (Instagram, X,
+                    LinkedIn, TikTok)
+                  </li>
+                </ul>
+                <p className="mt-2 font-bold">Memanfaatkan Teknologi AI</p>
+                <ul className="list-inside">
+                  <li>✅ Optimalisasi Media Sosial dengan AI</li>
+                  <li>✅ Tips & Trik Pemanfaatan AI untuk Pembuatan Konten</li>
+                  <li>✅ Mengintegrasikan Mindset AI dalam Strategi Konten</li>
+                  <li>✅ Etika menggunakan AI untuk memaksimalkan Konten</li>
+                </ul>
+                <p className="mt-2 font-bold">Pembuatan Konten Berkualitas</p>
+                <ul className="list-inside">
+                  <li>
+                    ✅ Framework Pembuatan Konten untuk Personal dan Brand
+                  </li>
+                  <li>
+                    ✅ Tools & Perangkat (Hardware & Software) yang Digunakan
+                  </li>
+                  <li>✅ Dasar Copywriting untuk Konten Digital</li>
+                  <li>✅ Tips Pembuatan Konten Video dan Visual</li>
+                </ul>
+                <p className="mt-2 font-bold">
+                  Optimasi Situs dan Website (BONUS)
+                </p>
+                <ul className="list-inside">
+                  <li>✅ Cara-cara membuat situs portfolio gratis</li>
+                  <li>✅ Memaksimalkan Situs Pribadi untuk Peluang Kerja</li>
+                  <li>
+                    ✅ Meningkatkan Profesionalitas Website Brand & Lead
+                    Conversion
+                  </li>
+                </ul>
+                <p className="mt-2 font-bold">Bonus Materi</p>
+                <ul className="list-inside">
+                  <li>✅ Update LIFETIME & Akses ke Komunitas Discord</li>
+                  <li>✅ Kabar Terbaru dan Tren di Dunia Digital</li>
+                </ul>
+                <p className="mt-2 font-bold">
+                  Kenapa harus beli ini sekarang???
+                </p>
+                <ul className="list-inside">
+                  <li>
+                    ✅ Insyaallah akan UPDATE LIFETIME semampu saya jika ada
+                    yang bisa dibahas
+                  </li>
+                  <li>✅ Ada komunitas discord bisa saling berjejaring</li>
+                  <li>
+                    ⚠️ Beli sekarang supaya mendapat harga yang lebih terjangkau
+                  </li>
+                  <li>
+                    ⚠️ Harga akan dinaikan karena pastinya ada peningkatan
+                    penulisan dan bahasan baru ataupun ada bab yang selesai
+                    ditulis
+                  </li>
+                </ul>
+              </div>
             </div>
-
             <p className="mt-2 font-bold">
               {isHigherScore
                 ? "Udah bagus, tapi ini promptnya kalau mau coba ningkatin value score brand kamu:"
                 : "Berikut prompt untuk membantu meningkatkan value score brand kamu:"}
             </p>
-            <Button
-              variant="primary"
-              onClick={copyToClipboard}
-              className="w-full"
-            >
-              <span className="flex items-center gap-x-2">
-                <Copy className="h-4 w-4" /> Copy Prompt
-              </span>
-            </Button>
             <pre className="mt-2 p-4 bg-gray-100 rounded text-sm whitespace-pre-wrap">
               {prompt}
+              <Button
+                variant="primary"
+                onClick={copyToClipboard}
+                className="w-full mt-4"
+              >
+                <span className="flex items-center gap-x-2">
+                  <Copy className="h-4 w-4" /> Copy Prompt
+                </span>
+              </Button>
             </pre>
           </>
         )}
@@ -160,7 +246,7 @@ const calculateValue = (values: {
 export default function ValueCalculator() {
   const [productName, setProductName] = React.useState("");
   const [productDetails, setProductDetails] = React.useState("");
-  const [bootcampValues, setBootcampValues] = React.useState({
+  const [productValues, setProductValues] = React.useState({
     outcome: 5,
     likelihood: 4,
     time: 2,
@@ -174,19 +260,19 @@ export default function ValueCalculator() {
   });
 
   const handleValueChange = (
-    category: keyof typeof bootcampValues,
-    type: "bootcamp" | "without",
+    category: keyof typeof productValues,
+    type: "product" | "without",
     value: number
   ) => {
-    if (type === "bootcamp") {
-      setBootcampValues((prev) => ({ ...prev, [category]: value }));
+    if (type === "product") {
+      setProductValues((prev) => ({ ...prev, [category]: value }));
     } else {
       setWithoutValues((prev) => ({ ...prev, [category]: value }));
     }
   };
 
   const generateTemplatePrompt = () => {
-    const productNameValueScore = calculateValue(bootcampValues);
+    const productNameValueScore = calculateValue(productValues);
     const withoutProductNameValueScore = calculateValue(withoutValues);
 
     return `You are expert brand strategist and brand research. I have product:
@@ -201,10 +287,10 @@ effort is how much resources like money, time, energy consumer needed (lower is 
 Help me to resolve my problem. My brand value score is ${productNameValueScore} compared to ${withoutProductNameValueScore} for other product. 
 
 The items to improve are: 
-- outcome (${bootcampValues.outcome})
-- likelihood (${bootcampValues.likelihood})
-- time (${bootcampValues.time})
-- effort (${bootcampValues.effort}) 
+- outcome (${productValues.outcome})
+- likelihood (${productValues.likelihood})
+- time (${productValues.time})
+- effort (${productValues.effort}) 
 
 How to Resolve Problems:
 1. Understand the Desired State:
@@ -252,7 +338,7 @@ Help me improve these items based on my product details and the problem formula 
           </TableHead>
           <TableBody>
             {(
-              Object.keys(bootcampValues) as Array<keyof typeof bootcampValues>
+              Object.keys(productValues) as Array<keyof typeof productValues>
             ).map((key) => (
               <TableRow key={key}>
                 <TableCell className="font-bold">
@@ -272,18 +358,16 @@ Help me improve these items based on my product details and the problem formula 
                       <ValueButton
                         key={value}
                         value={value}
-                        active={bootcampValues[key] === value}
-                        onClick={() =>
-                          handleValueChange(key, "bootcamp", value)
-                        }
+                        active={productValues[key] === value}
+                        onClick={() => handleValueChange(key, "product", value)}
                       />
                     ))}
                   </div>
                   <div className="sm:hidden">
                     <ValueDropdown
-                      value={bootcampValues[key]}
+                      value={productValues[key]}
                       onChange={(value) =>
-                        handleValueChange(key, "bootcamp", value)
+                        handleValueChange(key, "product", value)
                       }
                     />
                   </div>
@@ -312,7 +396,7 @@ Help me improve these items based on my product details and the problem formula 
             ))}
             <TableRow>
               <TableCell className="font-bold">value score</TableCell>
-              <TableCell>{calculateValue(bootcampValues)}</TableCell>
+              <TableCell>{calculateValue(productValues)}</TableCell>
               <TableCell>{calculateValue(withoutValues)}</TableCell>
             </TableRow>
           </TableBody>
@@ -320,18 +404,18 @@ Help me improve these items based on my product details and the problem formula 
       </div>
 
       {/* Pesan Hasil dan Prompt yang Dihasilkan */}
-      <div className="mt-8 text-lg">
+      <div className="mt-8 text-lg space-y-4">
         {!productName ? (
           <p>Masukan nama produk kamu dulu</p>
-        ) : Number(calculateValue(bootcampValues)) ===
+        ) : Number(calculateValue(productValues)) ===
           Number(calculateValue(withoutValues)) ? (
           <p>Hasilnya seimbang, tingkatkan value kamu</p>
-        ) : Number(calculateValue(bootcampValues)) >
+        ) : Number(calculateValue(productValues)) >
           Number(calculateValue(withoutValues)) ? (
           <p>
             🎊🥳 {productName} jadi{" "}
             {(
-              Number(calculateValue(bootcampValues)) /
+              Number(calculateValue(productValues)) /
               Number(calculateValue(withoutValues))
             ).toFixed(1)}{" "}
             x lebih valuable!
@@ -345,7 +429,7 @@ Help me improve these items based on my product details and the problem formula 
         <PromptCard
           prompt={generateTemplatePrompt()}
           isHigherScore={
-            Number(calculateValue(bootcampValues)) >
+            Number(calculateValue(productValues)) >
             Number(calculateValue(withoutValues))
           }
         />
