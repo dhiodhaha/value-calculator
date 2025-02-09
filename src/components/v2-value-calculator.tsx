@@ -119,12 +119,15 @@ const PromptCard = ({
               </p>
               <div className="mt-2">
                 Jika tertarik, silakan bisa cek landing page di goakal:{" "}
-                <a
-                  href="https://goakal.com/dhafin/onlinepresenceAI"
-                  className="text-blue-500 hover:underline"
+                <Button
+                  variant="primary"
+                  onClick={() =>
+                    window.open("https://goakal.com/dhafin/onlinepresenceAI", "_blank")
+                  }
+                  className="text-white "
                 >
-                  https://goakal.com/dhafin/valuecalculator
-                </a>{" "}
+                  [LANDING PAGE]
+                </Button>{" "}
                 (Pre order TERBATAS 10 untuk orang saja)
                 <p className="mt-2 font-bold">
                   📖 Apa yang akan dibahas dalam buku ini?
@@ -275,32 +278,20 @@ export default function ValueCalculator() {
     const productNameValueScore = calculateValue(productValues);
     const withoutProductNameValueScore = calculateValue(withoutValues);
 
-    return `You are expert brand strategist and brand research. I have product:
+    return `<role>Expert brand strategist and brand research. Know the formula to calculate value score.</role> This is my product details:
 ${productDetails}
 
-I have calculation and this is the component 
-outcome is what people want to achieve or their goal (higher is better)
-likelihood is the probability of success (higher is better)
-time is how long it takes to achieve the outcome (lower is better)
-effort is how much resources like money, time, energy consumer needed (lower is better)
+I have calculation and this is the component: outcome is what people want to achieve or their goal (higher is better), likelihood is the probability of success (higher is better), time is how long it takes to achieve the outcome (lower is better), effort is how much resources like money, time, energy consumer needed (lower is better)
 
 Help me to resolve my problem. My brand value score is ${productNameValueScore} compared to ${withoutProductNameValueScore} for other product. 
 
-The items to improve are: 
-- outcome (${productValues.outcome})
-- likelihood (${productValues.likelihood})
-- time (${productValues.time})
-- effort (${productValues.effort}) 
+The items to improve are: outcome (${productValues.outcome}), likelihood (${productValues.likelihood}), time (${productValues.time}), effort (${productValues.effort}) 
 
 How to Resolve Problems:
-1. Understand the Desired State:
-   - Clearly identify what people want to achieve.
-2. Identify Problems:
-   - Break down obstacles preventing achievement.
-3. Create Solutions:
-   - Increase likelihood, reduce time delay, minimize effort, and address the desired outcome.
-4. Consider Context:
-   - Tailor solutions to market segments and compare against existing alternatives.
+1. Understand the Desired State: Clearly identify what people want to achieve. Can be immediate needs or future goals (like career, business, etc)
+2. Identify Problems: Break down the obstacles preventing achievement. Can "Zoom in" to focus on specific problems or "zoom out" for comprehensive solutions.
+3. Create Solutions: Increase likelihood, reduce time delay, minimize effort, and address the desired outcome.
+4. Consider Context: Solutions may work differently for different market segments. Value proposition should be significantly better than existing alternatives. Important to compare against existing alternatives.
 
 Help me improve these items based on my product details and the problem formula to increase the overall value score.`;
   };
