@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Table,
   Button,
@@ -71,17 +71,32 @@ const getCategoryLabel = (category: Category) => {
       <>
         Likelihood
         <br />
-        <span className="text-xs">of achievement</span>
+        <span className="text-xs">perceived likehood of achievement</span>
       </>
     ),
-    time: "Time",
-    effort: "Effort",
+    time: (
+      <>
+        time
+        <br />
+        <span className="text-xs">time delay</span>
+      </>
+    ),
+    effort: (
+      <>
+        time
+        <br />
+        <span className="text-xs">amount of effor and sacrifire</span>
+      </>
+    ),
   };
   return labels[category];
 };
 
-const calculateValue = (values: ValueSet) =>
-  (Object.values(values).reduce((a, b) => a + b, 0) / 4).toFixed(2);
+const calculateValue = (values: ValueSet) => {
+  const { outcome, likelihood, time, effort } = values;
+  return ((outcome * likelihood) / (time * effort)).toFixed(2);
+  // (Object.values(values).reduce((a, b) => a + b, 0) / 4).toFixed(2);
+};
 
 export default function ValueCalculator() {
   const [productName, setProductName] = useState("");
