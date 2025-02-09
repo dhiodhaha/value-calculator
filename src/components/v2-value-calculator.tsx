@@ -115,12 +115,12 @@ const PromptCard = ({
                 Saat ini, saya sedang menulis buku tentang cara mengelola media
                 sosial untuk meningkatkan online presence, yang diharapkan bisa
                 membantu kamu lebih dikenal dan memperbesar peluang dikenal
-                konsumen ataupun diterima kerja namun dengan cara membuat konten di sosial media dengan cara yang cukup praktis.
+                konsumen ataupun diterima kerja namun dengan cara membuat konten di sosial media dengan cara yang cukup praktis. Di sini juga akan dituliskan panduan untuk membuat konten dengan AI.
               </p>
               <div className="mt-2">
                 Jika tertarik, silakan bisa cek landing page di goakal:{" "}
                 <a
-                  href="https://goakal.com/dhafin/optimalisasimediaAI"
+                  href="https://goakal.com/dhafin/onlinepresenceAI"
                   className="text-blue-500 hover:underline"
                 >
                   https://goakal.com/dhafin/valuecalculator
