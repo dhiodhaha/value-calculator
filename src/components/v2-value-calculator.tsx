@@ -126,7 +126,7 @@ const PromptCard = ({
                   }
                   className="text-white "
                 >
-                  [LANDING PAGE]
+                  LANDING PAGE
                 </Button>{" "}
                 (Pre order TERBATAS 10 untuk orang saja)
                 <p className="mt-2 font-bold">
